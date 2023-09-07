@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
+
   def index
     @user = User.all
     render json: @user
@@ -17,6 +19,10 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
+  end
+
+  def profile
+    render json: @user
   end
 
   private
