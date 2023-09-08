@@ -27,6 +27,27 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: params[:id])
+  
+    if @user
+      if @user.update(user_params)
+        render json: @user, status: :ok
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
+  end
+  
+
+  def destroy
+    @user = User.find_by(id:[:id])
+    @user.destroy
+    head :no_content
+  end
+
   def profile
     render json: @user
   end
@@ -36,5 +57,4 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:full_name,:username, :email, :password)
   end
-
 end
