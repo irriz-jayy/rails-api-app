@@ -24,3 +24,11 @@ Product.create(brand:"Nike",name:"Max 90 cushion", description:"Best air maxes",
 Product.create(brand:"Nike",name:"Air Jordan 1", description:"Low air jordans", image_url:"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQiXVvbxtRwbKooYO1mLx1LGR89_FPhzn3RV-Mu7llFcv_mPao-GazFW9LZSLJgFtEsGHE1OLKP939gvBMHYnFzHe5sXLyZEZqjEmi2emCNZvK96Y8V27tq&usqp=CAc", price:3850,stock:"In stock",color:"black", size:10)
 Product.create(brand:"Nike ",name:"Infinity run", description:"Running nike shoes", image_url:"https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fb5ad585-ec9c-4ab6-ab6f-b0b6b50235a4/infinityrn-4-mens-road-running-shoes-4hKwJW.png", price:4000,stock:"In Stock",color:"black", size:10)
 puts "Done"
+
+puts "Creating orders..."
+Order.create(user_id:1,product_id:1,quantity:2,status:"processing")
+Order.create(user_id:4,product_id:3,quantity:1,status:"pending")
+Order.create(user_id:6,product_id:2,quantity:3,status:"shipped")
+Order.create(user_id:5,product_id:4,quantity:2,status:"delivered")
+Order.create(user_id:10,product_id:4,quantity:2,status:"pending")
+puts "Done"
