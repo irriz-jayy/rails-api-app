@@ -43,10 +43,16 @@ class Api::V1::UsersController < ApplicationController
   
 
   def destroy
-    @user = User.find_by(id:[:id])
-    @user.destroy
-    head :no_content
+    @user = User.find_by(id: params[:id])
+  
+    if @user
+      @user.destroy
+      head :no_content
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
   end
+  
 
   def profile
     render json: @user

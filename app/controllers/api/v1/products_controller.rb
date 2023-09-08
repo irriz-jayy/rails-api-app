@@ -26,6 +26,32 @@ class Api::V1::ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product = Product.find_by(id: params[:id])
+  
+    if @product
+      if @product.update(product_params)
+        render json: @product, status: :ok
+      else
+        render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: "Product not found" }, status: :not_found
+    end
+  end
+  
+
+  def destroy
+    @product = Product.find_by(id:[:id])
+
+    if @product
+      @product.destroy
+      head :no_content
+    else
+      render json: {error: "Product not found"}
+    end
+  end
+
   private
   
   def product_params
