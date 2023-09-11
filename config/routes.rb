@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :cart_items
+      resources :carts
       resources :orders
       resources :products
       resources :users
